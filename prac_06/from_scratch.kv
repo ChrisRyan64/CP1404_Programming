@@ -7,19 +7,20 @@ BoxLayout:
             text: '0'
             font_size: 40
             multiline: False
+            on_text: app.convert_miles_to_kilometers(str(input_number.text))
         BoxLayout:
             orientation: 'vertical'
             Button:
                 id: increase_value
                 text: 'Up'
-                on_press: app.increment_input(1, int(input_number.text))
+                on_press: app.increment_input(1, str(input_number.text))
             Button:
                 id: decrease_value
                 text: 'Down'
-                on_press: app.increment_input(-1, int(input_number.text))
+                on_press: app.increment_input(-1, str(input_number.text))
     Button:
         text: 'Convert Miles > Km'
-        on_press: app.convert_miles_to_kilometers(int(input_number.text))
+        on_press: app.convert_miles_to_kilometers(str(input_number.text))
     Label:
         id: converted_km
         text: ''

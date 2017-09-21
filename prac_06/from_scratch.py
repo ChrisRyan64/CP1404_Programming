@@ -9,6 +9,7 @@ from kivy.core.window import Window
 
 __author__ = 'Christopher Ryan'
 
+
 class MilesConverterApp(App):
     def build(self):
         Window.size = (400, 200)
@@ -17,14 +18,18 @@ class MilesConverterApp(App):
         return self.root
 
     def increment_input(self, increment, user_input):
-        new_value = user_input + increment
-        self.root.ids.input_number.text = str(new_value)
+        try:
+            new_value = int(user_input) + increment
+            self.root.ids.input_number.text = str(new_value)
+        except ValueError:
+            new_value = 0 + increment
+            self.root.ids.input_number.text = str(new_value)
 
     def convert_miles_to_kilometers(self, miles):
         try:
-            kilometers = miles * 1.61
+            kilometers = int(miles) * 1.61
             self.root.ids.converted_km.text = str(kilometers)
         except ValueError:
-            self.root.ids.converted_km.text = 0
+            self.root.ids.converted_km.text = str(0)
 
 MilesConverterApp().run()
